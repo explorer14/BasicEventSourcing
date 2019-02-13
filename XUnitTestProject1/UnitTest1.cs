@@ -25,5 +25,27 @@ namespace XUnitTestProject1
             account.Debit(50);
             account.GetCurrentBalance().Should().Be(150);
         }
+
+        [Fact]
+        public void Test3()
+        {
+            var account = new BankAccount();
+            account.Credit(100);
+            account.Credit(100);
+            account.Debit(100);
+            var transactionCount = account.DebitsLargerThan(50);
+            transactionCount.Count.Should().Be(1);
+        }
+
+        [Fact]
+        public void Test4()
+        {
+            var account = new BankAccount();
+            account.Credit(100);
+            account.Credit(100);
+            account.Debit(100);
+            var transactionCount = account.CreditsLargerThan(50);
+            transactionCount.Count.Should().Be(2);
+        }
     }
 }

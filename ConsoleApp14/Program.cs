@@ -54,6 +54,16 @@ namespace ConsoleApp14
             this.transactions.Add(
                 new Debit(debitAmount));
         }
+
+        public IReadOnlyCollection<Transaction> CreditsLargerThan(
+            decimal amount) =>
+            transactions.Where(x => x.Amount > amount)
+                        .ToList();
+
+        public IReadOnlyCollection<Transaction> DebitsLargerThan(
+            decimal amount) => 
+            transactions.Where(x => x.Amount < (-1 * amount))
+                        .ToList();
     }
 
     public abstract class Transaction
